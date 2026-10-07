@@ -1,6 +1,7 @@
 # mac-window-no-buttons
 
 Hides the native close, minimise and zoom buttons on every Vivaldi window on macOS.
+For iTerm2, see [iTerm2](#iterm2).
 
 ## How it works
 
@@ -30,3 +31,14 @@ Hides the native close, minimise and zoom buttons on every Vivaldi window on mac
   entitlements are dropped).
 - Camera, microphone and other privacy prompts appear again.
 - Updates replace the patched app.
+
+## iTerm2
+
+iTerm2 needs no patch; its built-in settings remove the buttons.
+
+1. Settings → Profiles → Window → Style: **No Title Bar** (for every profile).
+   The window has no close, minimise or zoom buttons.
+2. Settings → Advanced → **Tabs: Default tab bar height** = `38`. No Title Bar windows
+   use this height; 38 matches the Minimal theme's compact tab bar.
+
+Both apply to new windows only. These windows have no title bar to drag by.
