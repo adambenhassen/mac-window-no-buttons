@@ -1,0 +1,9 @@
+/* Remove the space Vivaldi reserves for the native window buttons. */
+#browser.mac:not(.fullscreen) .window-buttongroup {
+    display: none;
+}
+
+/* Remove the flexible spacer after the new-tab button, so tabs use that width too. */
+#tabs-tabbar-container .toolbar-tabbar-after .toolbar-spacer-flexible {
+    display: none;
+}
