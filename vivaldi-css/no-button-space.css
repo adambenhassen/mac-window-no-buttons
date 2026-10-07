@@ -7,3 +7,18 @@
 #tabs-tabbar-container .toolbar-tabbar-after .toolbar-spacer-flexible {
     display: none;
 }
+
+/* Remove the 6px gap above the tabs. !important beats the density-on rule. */
+#tabs-tabbar-container.top {
+    padding-top: 0 !important;
+}
+
+/* Remove the 6px gap before the first tab. */
+.tabs-top #tabs-tabbar-container .toolbar-tabbar-before:empty {
+    min-width: 0 !important;
+}
+
+/* Remove the 6px gap after the last tab-bar button. */
+.tabs-top #tabs-tabbar-container .toolbar-tabbar-after {
+    padding-right: 0 !important;
+}
