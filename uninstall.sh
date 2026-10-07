@@ -1,12 +1,14 @@
 #!/bin/sh
-# Restore the unpatched Vivaldi saved by install.sh.
+# Restore the unpatched app (default /Applications/Vivaldi.app) saved by install.sh.
 set -eu
 
-app=/Applications/Vivaldi.app
-backup="$HOME/Library/Application Support/mac-window-no-buttons/Vivaldi.app.orig"
+app=${1:-/Applications/Vivaldi.app}
+app=${app%/}
+name=$(basename "$app")
+backup="$HOME/Library/Application Support/mac-window-no-buttons/$name.orig"
 
-if pgrep -xq Vivaldi; then
-    echo "Quit Vivaldi first." >&2
+if pgrep -fq "^$app/Contents/MacOS/"; then
+    echo "Quit $name first." >&2
     exit 1
 fi
 if [ ! -d "$backup" ]; then
@@ -16,4 +18,4 @@ fi
 
 rm -rf "$app"
 mv "$backup" "$app"
-echo "Restored original Vivaldi."
+echo "Restored original $name."
