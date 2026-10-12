@@ -27,6 +27,17 @@ For iTerm2, see [iTerm2](#iterm2).
 
 Quit the app first. Run `install.sh` again after every update of the app.
 
+## Unmodified app (keeps passkeys)
+
+`watch.sh [app]` leaves the app's signature intact. It attaches LLDB to each new
+instance and runs `inject.lldb`, which swizzles `-setHidden:` and
+`-viewDidMoveToWindow` on `_NSThemeWidget` so the buttons stay hidden. Needs SIP
+disabled and Xcode. The buttons show for a few seconds after launch.
+
+Run it at login with `~/Library/LaunchAgents/local.mac-window-no-buttons.plist`
+(log: `~/Library/Logs/mac-window-no-buttons.log`). Use it instead of `install.sh`,
+not with it.
+
 ## Side effects
 
 - macOS asks once for keychain access to "Vivaldi Safe Storage". Choose Always Allow,
