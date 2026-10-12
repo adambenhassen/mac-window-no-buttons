@@ -40,5 +40,5 @@ while :; do
     for pid in ${(k)done_pids}; do
         [[ -n ${alive[$pid]:-} ]] || unset "done_pids[$pid]"
     done
-    /bin/sleep 0.3
+    /bin/sleep 1
 done
