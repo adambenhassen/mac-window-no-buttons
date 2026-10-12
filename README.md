@@ -32,11 +32,13 @@ Quit the app first. Run `install.sh` again after every update of the app.
 `watch.sh [app]` leaves the app's signature intact. It attaches LLDB to each new
 instance and runs `inject.lldb`, which swizzles `-setHidden:` and
 `-viewDidMoveToWindow` on `_NSThemeWidget` so the buttons stay hidden. Needs SIP
-disabled and Xcode. The buttons show for a few seconds after launch.
+disabled and Xcode. It attaches within 2 s of launch; if it misses that, it waits
+until 30 s, because pausing Vivaldi while it restores its session makes it quit.
 
-Run it at login with `~/Library/LaunchAgents/local.mac-window-no-buttons.plist`
+`./watch-install.sh [app]` installs a LaunchAgent that runs it at login
 (log: `~/Library/Logs/mac-window-no-buttons.log`). Use it instead of `install.sh`,
-not with it.
+not with it. To remove: `launchctl bootout gui/$(id -u)/local.mac-window-no-buttons`
+and delete `~/Library/LaunchAgents/local.mac-window-no-buttons.plist`.
 
 ## Side effects
 
