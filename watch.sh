@@ -25,10 +25,9 @@ while :; do
     for pid in $(/usr/bin/pgrep -f "^$exe( |\$)"); do
         alive[$pid]=1
         [[ -n ${done_pids[$pid]:-} ]] && continue
-        # Pausing Vivaldi while it restores its session makes it close every
-        # window and quit. Attach before that starts, or once it has settled.
-        a=$(age $pid)
-        (( a >= 2 && a < 30 )) && continue
+        # NoBorder attaches at 30 s and does not retry a busy attach, so go
+        # after it. A failed attach here is retried on the next pass.
+        (( $(age $pid) < 32 )) && continue
         out=$(/usr/bin/xcrun lldb -b -p $pid -s "$dir/inject.lldb" 2>&1)
         if [[ $out == *nobuttons-ok* ]]; then
             done_pids[$pid]=1

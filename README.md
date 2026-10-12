@@ -32,7 +32,8 @@ Quit the app first. Run `install.sh` again after every update of the app.
 `watch.sh [app]` leaves the app's signature intact. It attaches LLDB to each new
 instance and runs `inject.lldb`, which swizzles `-setHidden:` and
 `-viewDidMoveToWindow` on `_NSThemeWidget` so the buttons stay hidden. Needs SIP
-disabled and Xcode. The buttons show for a few seconds after launch.
+disabled and Xcode. It attaches 32 s after launch, after NoBorder, which attaches at
+30 s and does not retry if another debugger holds the app. The buttons show until then.
 
 Run it at login with `~/Library/LaunchAgents/local.mac-window-no-buttons.plist`
 (log: `~/Library/Logs/mac-window-no-buttons.log`). Use it instead of `install.sh`,
